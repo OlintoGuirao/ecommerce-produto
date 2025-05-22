@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Estilos para os tamanhos */
+.size-option {
+  @apply w-10 h-10 flex items-center justify-center border border-gray-300 rounded cursor-pointer;
+}
+
+.size-option.disabled {
+  @apply bg-gray-200 cursor-not-allowed;
+}
+
+.size-option.selected {
+  @apply border-red-500;
+}
+
+/* Estilos para as imagens */
+.product-image {
+  @apply w-full h-auto rounded-lg;
+}
+
+.thumbnail {
+  @apply w-20 h-20 object-cover cursor-pointer rounded;
+}
+
+/* Estilos para os preços */
+.price-pix {
+  @apply text-xl text-green-600 font-bold;
+}
+
+.original-price {
+  @apply text-lg text-gray-500 line-through;
+}
+
+.discount {
+  @apply text-lg text-red-600 font-bold;
+}
+
+/* Estilos para as avaliações */
+.rating {
+  @apply flex items-center mt-2;
+}
+
+.star {
+  @apply text-yellow-500;
+}
+
+/* Estilos para os selects */
+.select {
+  @apply mt-1 block w-full p-2 border border-gray-300 rounded;
+}
+
+/* Estilos para o CEP */
+.cep-input {
+  @apply mt-1 block w-full p-2 border border-gray-300 rounded;
+}
