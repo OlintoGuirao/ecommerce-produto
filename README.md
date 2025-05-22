@@ -1,23 +1,23 @@
 # E-commerce Produto
 
-Este é um projeto de página de produto para e-commerce desenvolvido com React e Tailwind CSS.
+Página de produto de e-commerce desenvolvida com React e Tailwind CSS.
 
 ## Funcionalidades
 
 - Exibição de imagens do produto com thumbnails
-- Seleção de tamanhos disponíveis
-- Seleção de cores
-- Verificação de disponibilidade por CEP
+- Seleção de tamanhos e cores
 - Sistema de avaliações
-- Preços em diferentes formatos (Pix, parcelado)
+- Preços com desconto e parcelamento
+- Verificação de disponibilidade de entrega por CEP
 - Design responsivo
+- Persistência de dados no localStorage
 
 ## Tecnologias Utilizadas
 
 - React
 - Tailwind CSS
 - PostCSS
-- LocalStorage para persistência de dados
+- ViaCEP API
 
 ## Como Executar
 
@@ -30,6 +30,10 @@ npm install
 ```bash
 npm start
 ```
+
+## Deploy
+
+O projeto está disponível em: [Link do Vercel]
 
 ## Estrutura do Projeto
 

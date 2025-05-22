@@ -77,71 +77,71 @@ function App() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3">
-          <img src={mainImage} alt="Produto" className="w-full h-auto" />
-          <div className="flex flex-wrap mt-2">
+    <div className="container">
+      <div className="product-grid">
+        <div className="image-section">
+          <img src={mainImage} alt="Produto" className="product-image" />
+          <div className="thumbnails-container">
             {thumbnails.map((thumbnail, index) => (
               <img
                 key={index}
                 src={thumbnail}
                 alt={`Thumbnail ${index + 1}`}
-                className="w-20 h-20 object-cover cursor-pointer m-1"
+                className={`thumbnail ${mainImage === thumbnail ? 'active' : ''}`}
                 onClick={() => handleThumbnailClick(thumbnail)}
               />
             ))}
           </div>
         </div>
-        <div className="md:w-2/3 md:pl-4 lg:pl-8">
-          <h1 className="text-2xl font-bold">{title}</h1>
-          <div className="flex items-center mt-2">
+        <div className="info-section">
+          <h1 className="product-title">{title}</h1>
+          <div className="rating">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className={`text-yellow-500 ${i < Math.floor(rating) ? 'text-yellow-500' : 'text-gray-300'}`}>★</span>
+              <span key={i} className={`star ${i < Math.floor(rating) ? 'text-yellow-500' : 'text-gray-300'}`}>★</span>
             ))}
-            <span className="ml-1">{rating}</span>
-            <span className="ml-2 text-gray-600">({reviewCount} avaliações)</span>
+            <span>{rating}</span>
+            <span className="text-gray-600">({reviewCount} avaliações)</span>
           </div>
-          <p className="text-xl text-green-600">{price} no Pix</p>
-          <p className="text-lg text-gray-500 line-through">{originalPrice}</p>
-          <p className="text-lg text-red-600">{discount}</p>
-          <p className="text-lg">ou {installmentPrice} em até {installmentCount}x sem juros</p>
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold">Selecione um tamanho</h2>
-            <div className="flex flex-wrap mt-2">
+          <div className="price-container">
+            <p className="price-pix">{price} no Pix</p>
+            <p className="original-price">{originalPrice}</p>
+            <p className="discount">{discount}</p>
+            <p className="installment">ou {installmentPrice} em até {installmentCount}x sem juros</p>
+          </div>
+          <div className="sizes-section">
+            <h2 className="sizes-title">Selecione um tamanho</h2>
+            <div className="sizes-grid">
               {sizes.map((size) => (
-                <span key={size} className="m-1">
-                  <label className={`flex items-center justify-center w-10 h-10 border border-gray-300 rounded cursor-pointer ${!availableSizes.includes(size) ? 'bg-gray-200' : ''} ${selectedSize === size ? 'border-red-500' : ''}`}>
-                    <input
-                      type="radio"
-                      name="size"
-                      value={size}
-                      checked={selectedSize === size}
-                      onChange={(e) => setSelectedSize(e.target.value)}
-                      className="hidden"
-                      disabled={!availableSizes.includes(size)}
-                    />
-                    {!availableSizes.includes(size) ? (
-                      <div className="relative">
-                        <span className="absolute inset-0 flex items-center justify-center text-gray-500" title="Indisponível">{size}</span>
-                      </div>
-                    ) : (
-                      size
-                    )}
-                  </label>
-                </span>
+                <label
+                  key={size}
+                  className={`size-option ${!availableSizes.includes(size) ? 'disabled' : ''} ${selectedSize === size ? 'selected' : ''}`}
+                >
+                  <input
+                    type="radio"
+                    name="size"
+                    value={size}
+                    checked={selectedSize === size}
+                    onChange={(e) => setSelectedSize(e.target.value)}
+                    className="hidden"
+                    disabled={!availableSizes.includes(size)}
+                  />
+                  {!availableSizes.includes(size) ? (
+                    <div className="relative">
+                      <span className="absolute inset-0 flex items-center justify-center text-gray-500" title="Indisponível">{size}</span>
+                    </div>
+                  ) : (
+                    size
+                  )}
+                </label>
               ))}
             </div>
-            <p className="mt-2 text-sm text-gray-600">
-              <b>Acerte o tamanho:</b> Para mais conforto, recomendamos escolher um <b>tamanho maior</b> que o usual. <button className="text-blue-500 underline">Saiba mais.</button>
-            </p>
           </div>
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold">Cor</h2>
+          <div className="colors-section">
+            <h2 className="colors-title">Cor</h2>
             <select
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
+              className="color-select"
             >
               <option value="">Selecione uma cor</option>
               {colors.map((color) => (
@@ -149,16 +149,16 @@ function App() {
               ))}
             </select>
           </div>
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold">CEP</h2>
+          <div className="cep-section">
+            <h2 className="cep-title">CEP</h2>
             <input
               type="text"
               value={cep}
               onChange={handleCepChange}
               placeholder="Digite o CEP"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded"
+              className="cep-input"
             />
-            {address && <p className="mt-2">{address}</p>}
+            {address && <p className="cep-address">{address}</p>}
           </div>
         </div>
       </div>
